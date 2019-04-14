@@ -15,7 +15,7 @@ import Hoa from "./hoa.jpg";
     //  {id: 5, name: "Memory Game"}
     ];
 
-
+var menuStatus = "fullNav";
 
 class App extends Component {
 
@@ -23,7 +23,8 @@ class App extends Component {
       super(props);
       this.scrollDiv = React.createRef();
       this.scrollDivProj = React.createRef();
-      this.state = {projects}
+      this.scrollDivContact = React.createRef();
+      this.state = {projects, menuStatus}
   }
 
 
@@ -36,6 +37,10 @@ class App extends Component {
 
        this.setState({projects:newProjects})
 
+   var toggleMenu = (event) => {
+
+   }
+
 
    }
 
@@ -43,7 +48,8 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <div className="headerTitle"> Jenna Michele </div>
-          <nav>
+
+          <nav className="fullNav">
             <ul className="navList">
               <li className="navListItem" onClick={() => {
               this.scrollDiv.current.scrollIntoView({ behavior: 'smooth' });
@@ -51,28 +57,38 @@ class App extends Component {
               <li className="navListItem" onClick={() => {
               this.scrollDivProj.current.scrollIntoView({ behavior: 'smooth' });
             }}> Projects </li>
-              <li className="navListItem"> Contact Me </li>
+              <li className="navListItem" onClick={() => {
+              this.scrollDivContact.current.scrollIntoView({ behavior: 'smooth' });
+            }}> Contact Me </li>
             </ul>
           </nav>
         </header>
         <main className="mainContent">
-
-          <div className="projectContainer" ref={this.scrollDivProj}>
-          <h1 className="projectHeader"> Projects </h1>
-            {this.state.projects.map(item => <Project image={item.image} id={item.id} show={item.show} summary={item.description} toggleProject={toggleProject} />)}
+          <div className="projectContainerOuter" ref={this.scrollDivProj}>
+            <div className="projectContainer" >
+              <h1 className="projectHeader"> Projects </h1>
+                {this.state.projects.map(item => <Project image={item.image} id={item.id} show={item.show} summary={item.description} toggleProject={toggleProject} />)}
+            </div>
           </div>
-         <div className="aboutSection" >
-            <h1 className="aboutHeader"> About Me </h1>
-            <p> Welcome! As you probably guessed, my name is Jenna. I am passionate about
-              web development and design. I began my coding journey with Udacity
-              and have been hooked since. I enjoy bringing design to life with
-              javascript and continually learning from others. My other passion
-              is health and creating apps that can improve my family's health,
-              which inspired my project to track UV exposure! I hope to work
-              with you soon! </p>
-
+          <div className="aboutOuterSection" ref={this.scrollDiv}>
+            <div className="aboutSection"  >
+              <h1 className="aboutHeader"> About Me </h1>
+              <div> Welcome! As you probably guessed, my name is Jenna. I am passionate about
+                web development and design. I began my coding journey with Udacity
+                and have been hooked since. I enjoy bringing design to life with
+                javascript and continually learning from others. My other passion
+                is health and creating apps that can improve my family's health,
+                which inspired my project to track UV exposure! I hope to work
+                with you soon! </div>
+            </div>
+        </div>
+         <div className="contactSection" ref={this.scrollDivContact} >
+            <div className="innerSection">
+              <h1 className="contactHeader"> Contact Me </h1>
+                  <div> Email Me @ jenna.wills321@gmail.com </div>
+                  <div> Connect with me on LinkedIn! </div>
+            </div>
          </div>
-         <div className="anchor" ref={this.scrollDiv} />
         </main>
       </div>
     );
