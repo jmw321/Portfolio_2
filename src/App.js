@@ -51,7 +51,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <div className="headerTitle" onClick={showNav}> Jenna Michele </div>
+          <div className="headerTitle" onClick={showNav}> Jenna Michele <i class="fas fa-bars" id="menuIcon"></i> </div>
+
         {this.state.navShow === true &&
           <nav className="fullNav">
             <ul className="navList">
@@ -90,8 +91,8 @@ class App extends Component {
          <div className="contactSection" ref={this.scrollDivContact} >
             <div className="innerSection">
               <h1 className="contactHeader"> Contact Me </h1>
-                  <div> Email Me @ jenna.wills321@gmail.com </div>
-                  <div> Connect with me on LinkedIn! </div>
+                  <div> <i class="far fa-envelope fa-2x"></i> <p> Email Me @ jenna.wills321@gmail.com</p> </div>
+                  <div> <i class="fab fa-linkedin fa-2x"></i> <p> Connect with me on <a href="https://www.linkedin.com/in/jenna-p-785034104"> LinkedIn! </a> </p> </div>
             </div>
          </div>
         </main>
