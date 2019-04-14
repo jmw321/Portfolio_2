@@ -15,7 +15,7 @@ import Hoa from "./hoa.jpg";
     //  {id: 5, name: "Memory Game"}
     ];
 
-var menuStatus = "fullNav";
+var navShow = false;
 
 class App extends Component {
 
@@ -24,7 +24,7 @@ class App extends Component {
       this.scrollDiv = React.createRef();
       this.scrollDivProj = React.createRef();
       this.scrollDivContact = React.createRef();
-      this.state = {projects, menuStatus}
+      this.state = {projects, navShow}
   }
 
 
@@ -37,18 +37,22 @@ class App extends Component {
 
        this.setState({projects:newProjects})
 
-   var toggleMenu = (event) => {
-
-   }
 
 
    }
+
+   var showNav = event => {
+     this.state.navShow === true
+       ? this.setState({navShow: false})
+       : this.setState({navShow: true});
+   };
+
 
     return (
       <div className="App">
         <header className="App-header">
-          <div className="headerTitle"> Jenna Michele </div>
-
+          <div className="headerTitle" onClick={showNav}> Jenna Michele </div>
+        {this.state.navShow === true &&
           <nav className="fullNav">
             <ul className="navList">
               <li className="navListItem" onClick={() => {
@@ -62,6 +66,7 @@ class App extends Component {
             }}> Contact Me </li>
             </ul>
           </nav>
+        }
         </header>
         <main className="mainContent">
           <div className="projectContainerOuter" ref={this.scrollDivProj}>
